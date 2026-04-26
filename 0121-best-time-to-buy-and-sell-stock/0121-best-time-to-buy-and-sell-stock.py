@@ -1,16 +1,18 @@
 class Solution(object):
     def maxProfit(self, prices):
-
-        min_price = float('inf')
-        max_profit = 0
+        minPrice = prices[0]   # cheapest price seen so far
+        maxProfit = 0          # best profit found so far
 
         for price in prices:
+            # if current price is cheaper, update minPrice
+            if price < minPrice:
+                minPrice = price
 
-            if price < min_price:
-                min_price = price
+            # calculate profit if we sell today
+            profit = price - minPrice
 
-            else:
-                profit = price - min_price
-                max_profit = max(max_profit, profit)
+            # keep the maximum profit
+            if profit > maxProfit:
+                maxProfit = profit
 
-        return max_profit
+        return maxProfit
